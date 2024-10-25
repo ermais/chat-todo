@@ -8,14 +8,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'main.g.dart';
 
 @riverpod
-int  count(Ref ref){
+int count(Ref ref) {
   return 0;
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const ProviderScope(
-    child:App()
-  ));
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const ProviderScope(child: App()));
 }
