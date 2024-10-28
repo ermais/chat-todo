@@ -1,3 +1,4 @@
+import 'package:chat_todo/features/auth/provider/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,6 +9,13 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(authNotifierProvider, (prev, next) {
+      next.maybeWhen(
+        orElse: () => null,
+        authenticated: (user) {},
+        unauthenticated: (message) => null,
+      );
+    });
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

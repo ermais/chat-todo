@@ -1,4 +1,5 @@
 import 'package:chat_todo/features/auth/provider/auth_notifier.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -51,13 +52,16 @@ class _SignInPageState extends ConsumerState<SignInPage> {
           orElse: () => null,
           authenticated: (user) => {context.go("/")},
           unauthenticated: (message) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(message!),
-              behavior: SnackBarBehavior.floating,
-            ));
+            if (message != null) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(message!),
+                behavior: SnackBarBehavior.floating,
+              ));
+            }
           });
     });
 
+    final auth = ref.watch(authNotifierProvider);
     return Scaffold(
         body: Center(
       child: Column(

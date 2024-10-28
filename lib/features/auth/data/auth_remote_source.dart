@@ -42,6 +42,7 @@ class AuthRemoteSource {
           idToken: googleAuth.idToken,
         );
         final response = await _firebaseAuth.signInWithCredential(credential);
+        
         return Right(response.user!);
       }else{
         return Left('failed to login');
