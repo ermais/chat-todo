@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
@@ -16,6 +18,17 @@ class UserModel {
     required this.lastSeen,
     required this.chats,
   });
+
+  factory UserModel.fromMap(Map<String, dynamic> data, String userId) {
+    return UserModel(
+      id: userId,
+      username: data['username'] as String,
+      profilePictureUrl: data['profilePictureUrl'] as String,
+      onlineStatus: data['onlineStatus'] as bool,
+      lastSeen: data['lastSeen'] as int,
+      chats: List.from(data['chats'] as List<dynamic>),
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {

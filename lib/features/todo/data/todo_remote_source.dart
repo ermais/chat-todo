@@ -12,6 +12,7 @@ class TodoRemoteSource {
   final Ref _ref;
   TodoRemoteSource(this._firebase, this._ref);
 
+
   Future<Either<String, DocumentReference<Map<String, dynamic>>>> addTodo(
       {required TodoModel todoModel, required List<File> files}) async {
     try {
@@ -59,13 +60,11 @@ class TodoRemoteSource {
 
   Future<Either<String, String?>> uploadDoc(File file) async {
     try {
-      debugPrint("File path ${file.path}");
       final storageRef = _ref.read(firebaseStorageProvider).ref();
       final fileRef = storageRef.child(
           'todoImages/${_ref.read(firebaseAuthProvider).currentUser!.uid}/${file.path.split('/').last}');
       await fileRef.putFile(file);
       String? downloadUrl = await fileRef.getDownloadURL();
-      debugPrint("downloadUrl ${downloadUrl}");
       return Right(downloadUrl);
     } on FirebaseException catch (e) {
       return Left(e.message ?? 'failed to upload');

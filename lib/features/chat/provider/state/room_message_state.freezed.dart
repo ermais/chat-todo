@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'chat_list_state.dart';
+part of 'room_message_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,29 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ChatListState {
+mixin _$RoomMessageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatRoomWithPeer>? chatRooms) completed,
-    required TResult Function(String? message) failure,
+    required TResult Function(List<MessageModel>? messages) completed,
+    required TResult Function(String? error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult? Function(String? message)? failure,
+    TResult? Function(List<MessageModel>? messages)? completed,
+    TResult? Function(String? error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult Function(String? message)? failure,
+    TResult Function(List<MessageModel>? messages)? completed,
+    TResult Function(String? error)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,23 +69,23 @@ mixin _$ChatListState {
 }
 
 /// @nodoc
-abstract class $ChatListStateCopyWith<$Res> {
-  factory $ChatListStateCopyWith(
-          ChatListState value, $Res Function(ChatListState) then) =
-      _$ChatListStateCopyWithImpl<$Res, ChatListState>;
+abstract class $RoomMessageStateCopyWith<$Res> {
+  factory $RoomMessageStateCopyWith(
+          RoomMessageState value, $Res Function(RoomMessageState) then) =
+      _$RoomMessageStateCopyWithImpl<$Res, RoomMessageState>;
 }
 
 /// @nodoc
-class _$ChatListStateCopyWithImpl<$Res, $Val extends ChatListState>
-    implements $ChatListStateCopyWith<$Res> {
-  _$ChatListStateCopyWithImpl(this._value, this._then);
+class _$RoomMessageStateCopyWithImpl<$Res, $Val extends RoomMessageState>
+    implements $RoomMessageStateCopyWith<$Res> {
+  _$RoomMessageStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -98,13 +98,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ChatListStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$RoomMessageStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -115,7 +115,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'ChatListState.initial()';
+    return 'RoomMessageState.initial()';
   }
 
   @override
@@ -132,8 +132,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatRoomWithPeer>? chatRooms) completed,
-    required TResult Function(String? message) failure,
+    required TResult Function(List<MessageModel>? messages) completed,
+    required TResult Function(String? error) failure,
   }) {
     return initial();
   }
@@ -143,8 +143,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult? Function(String? message)? failure,
+    TResult? Function(List<MessageModel>? messages)? completed,
+    TResult? Function(String? error)? failure,
   }) {
     return initial?.call();
   }
@@ -154,8 +154,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult Function(String? message)? failure,
+    TResult Function(List<MessageModel>? messages)? completed,
+    TResult Function(String? error)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -202,7 +202,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ChatListState {
+abstract class _Initial implements RoomMessageState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -215,13 +215,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ChatListStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$RoomMessageStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -232,7 +232,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'ChatListState.loading()';
+    return 'RoomMessageState.loading()';
   }
 
   @override
@@ -249,8 +249,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatRoomWithPeer>? chatRooms) completed,
-    required TResult Function(String? message) failure,
+    required TResult Function(List<MessageModel>? messages) completed,
+    required TResult Function(String? error) failure,
   }) {
     return loading();
   }
@@ -260,8 +260,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult? Function(String? message)? failure,
+    TResult? Function(List<MessageModel>? messages)? completed,
+    TResult? Function(String? error)? failure,
   }) {
     return loading?.call();
   }
@@ -271,8 +271,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult Function(String? message)? failure,
+    TResult Function(List<MessageModel>? messages)? completed,
+    TResult Function(String? error)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,7 +319,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements ChatListState {
+abstract class _Loading implements RoomMessageState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -329,29 +329,29 @@ abstract class _$$CompletedImplCopyWith<$Res> {
           _$CompletedImpl value, $Res Function(_$CompletedImpl) then) =
       __$$CompletedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ChatRoomWithPeer>? chatRooms});
+  $Res call({List<MessageModel>? messages});
 }
 
 /// @nodoc
 class __$$CompletedImplCopyWithImpl<$Res>
-    extends _$ChatListStateCopyWithImpl<$Res, _$CompletedImpl>
+    extends _$RoomMessageStateCopyWithImpl<$Res, _$CompletedImpl>
     implements _$$CompletedImplCopyWith<$Res> {
   __$$CompletedImplCopyWithImpl(
       _$CompletedImpl _value, $Res Function(_$CompletedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? chatRooms = freezed,
+    Object? messages = freezed,
   }) {
     return _then(_$CompletedImpl(
-      chatRooms: freezed == chatRooms
-          ? _value._chatRooms
-          : chatRooms // ignore: cast_nullable_to_non_nullable
-              as List<ChatRoomWithPeer>?,
+      messages: freezed == messages
+          ? _value._messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<MessageModel>?,
     ));
   }
 }
@@ -359,22 +359,22 @@ class __$$CompletedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CompletedImpl implements _Completed {
-  const _$CompletedImpl({final List<ChatRoomWithPeer>? chatRooms})
-      : _chatRooms = chatRooms;
+  const _$CompletedImpl({final List<MessageModel>? messages})
+      : _messages = messages;
 
-  final List<ChatRoomWithPeer>? _chatRooms;
+  final List<MessageModel>? _messages;
   @override
-  List<ChatRoomWithPeer>? get chatRooms {
-    final value = _chatRooms;
+  List<MessageModel>? get messages {
+    final value = _messages;
     if (value == null) return null;
-    if (_chatRooms is EqualUnmodifiableListView) return _chatRooms;
+    if (_messages is EqualUnmodifiableListView) return _messages;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'ChatListState.completed(chatRooms: $chatRooms)';
+    return 'RoomMessageState.completed(messages: $messages)';
   }
 
   @override
@@ -382,15 +382,14 @@ class _$CompletedImpl implements _Completed {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CompletedImpl &&
-            const DeepCollectionEquality()
-                .equals(other._chatRooms, _chatRooms));
+            const DeepCollectionEquality().equals(other._messages, _messages));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_chatRooms));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_messages));
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -403,10 +402,10 @@ class _$CompletedImpl implements _Completed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatRoomWithPeer>? chatRooms) completed,
-    required TResult Function(String? message) failure,
+    required TResult Function(List<MessageModel>? messages) completed,
+    required TResult Function(String? error) failure,
   }) {
-    return completed(chatRooms);
+    return completed(messages);
   }
 
   @override
@@ -414,10 +413,10 @@ class _$CompletedImpl implements _Completed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult? Function(String? message)? failure,
+    TResult? Function(List<MessageModel>? messages)? completed,
+    TResult? Function(String? error)? failure,
   }) {
-    return completed?.call(chatRooms);
+    return completed?.call(messages);
   }
 
   @override
@@ -425,12 +424,12 @@ class _$CompletedImpl implements _Completed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult Function(String? message)? failure,
+    TResult Function(List<MessageModel>? messages)? completed,
+    TResult Function(String? error)? failure,
     required TResult orElse(),
   }) {
     if (completed != null) {
-      return completed(chatRooms);
+      return completed(messages);
     }
     return orElse();
   }
@@ -473,13 +472,13 @@ class _$CompletedImpl implements _Completed {
   }
 }
 
-abstract class _Completed implements ChatListState {
-  const factory _Completed({final List<ChatRoomWithPeer>? chatRooms}) =
+abstract class _Completed implements RoomMessageState {
+  const factory _Completed({final List<MessageModel>? messages}) =
       _$CompletedImpl;
 
-  List<ChatRoomWithPeer>? get chatRooms;
+  List<MessageModel>? get messages;
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompletedImplCopyWith<_$CompletedImpl> get copyWith =>
@@ -492,28 +491,28 @@ abstract class _$$FailureImplCopyWith<$Res> {
           _$FailureImpl value, $Res Function(_$FailureImpl) then) =
       __$$FailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? message});
+  $Res call({String? error});
 }
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<$Res>
-    extends _$ChatListStateCopyWithImpl<$Res, _$FailureImpl>
+    extends _$RoomMessageStateCopyWithImpl<$Res, _$FailureImpl>
     implements _$$FailureImplCopyWith<$Res> {
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? error = freezed,
   }) {
     return _then(_$FailureImpl(
-      message: freezed == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -522,14 +521,14 @@ class __$$FailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailureImpl implements _Failure {
-  const _$FailureImpl({this.message});
+  const _$FailureImpl({this.error});
 
   @override
-  final String? message;
+  final String? error;
 
   @override
   String toString() {
-    return 'ChatListState.failure(message: $message)';
+    return 'RoomMessageState.failure(error: $error)';
   }
 
   @override
@@ -537,13 +536,13 @@ class _$FailureImpl implements _Failure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -556,10 +555,10 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatRoomWithPeer>? chatRooms) completed,
-    required TResult Function(String? message) failure,
+    required TResult Function(List<MessageModel>? messages) completed,
+    required TResult Function(String? error) failure,
   }) {
-    return failure(message);
+    return failure(error);
   }
 
   @override
@@ -567,10 +566,10 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult? Function(String? message)? failure,
+    TResult? Function(List<MessageModel>? messages)? completed,
+    TResult? Function(String? error)? failure,
   }) {
-    return failure?.call(message);
+    return failure?.call(error);
   }
 
   @override
@@ -578,12 +577,12 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatRoomWithPeer>? chatRooms)? completed,
-    TResult Function(String? message)? failure,
+    TResult Function(List<MessageModel>? messages)? completed,
+    TResult Function(String? error)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(message);
+      return failure(error);
     }
     return orElse();
   }
@@ -626,12 +625,12 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements ChatListState {
-  const factory _Failure({final String? message}) = _$FailureImpl;
+abstract class _Failure implements RoomMessageState {
+  const factory _Failure({final String? error}) = _$FailureImpl;
 
-  String? get message;
+  String? get error;
 
-  /// Create a copy of ChatListState
+  /// Create a copy of RoomMessageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>

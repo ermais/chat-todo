@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:chat_todo/features/chat/data/models/chat_room_model.dart';
 import 'package:chat_todo/features/chat/data/models/message_model.dart';
 import 'package:chat_todo/features/chat/data/models/user_model.dart';
@@ -20,10 +18,23 @@ class ChatRemoteSource {
           .collection("messages")
           .doc(roomId)
           .collection("messages");
+      await updateChatRoom(
+          data: {'lastMessage': messageModel.message}, roomId: roomId);
       final response = await docRef.add(messageModel.toMap());
       return Right(response);
     } on FirebaseException catch (e) {
       return Left(e.message ?? 'sending message failed');
+    }
+  }
+
+  Future<Either<String, void>> updateChatRoom(
+      {required Map<String, dynamic> data, required String roomId}) async {
+    try {
+      final docRef = _firebaseFirestore.collection("chat-rooms");
+      final response = await docRef.doc(roomId).update(data);
+      return Right(response);
+    } on FirebaseException catch (e) {
+      return Left(e.message ?? "failed to update");
     }
   }
 
@@ -62,6 +73,19 @@ class ChatRemoteSource {
     }
   }
 
+  Future<Either<String, UserModel>> getPeerUser(
+      {required String peerId}) async {
+    try {
+      final response =
+          await _firebaseFirestore.collection('users').doc(peerId).get();
+      final UserModel user =
+          UserModel.fromMap(response.data() as Map<String, dynamic>, peerId);
+      return Right(user);
+    } on FirebaseException catch (e) {
+      return Left(e?.message ?? "failed to load user");
+    }
+  }
+
   Future<Either<String, DocumentReference>> createChatRoom(
       {required ChatRoomModel chatRoomModel}) async {
     try {
@@ -85,9 +109,4 @@ class ChatRemoteSource {
       return Left(e.message ?? "failed to fecth user chat rooms");
     }
   }
-
-
-  
-
-
 }

@@ -4,10 +4,10 @@ class ChatRoomModel {
   final String id;
   final String type;
   final List<String> participants;
-  final String? groupName; 
-  final int createdAt;
+  final String? groupName;
+  final DateTime createdAt;
   final String lastMessage;
-  final int lastMessageTimestamp;
+  final DateTime lastMessageTimestamp;
 
   ChatRoomModel({
     required this.id,
@@ -21,12 +21,13 @@ class ChatRoomModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'type': type,
       'participants': participants,
       'groupName': groupName,
-      'createdAt': createdAt,
+      'createdAt': Timestamp.fromDate(createdAt),
       'lastMessage': lastMessage,
-      'lastMessageTimestamp': lastMessageTimestamp,
+      'lastMessageTimestamp': Timestamp.fromDate(lastMessageTimestamp),
     };
   }
 
@@ -37,9 +38,10 @@ class ChatRoomModel {
       type: data['type'],
       participants: List<String>.from(data['participants']),
       groupName: data['groupName'],
-      createdAt: data['createdAt'],
+      createdAt: (data['createdAt'] as Timestamp).toDate(),
       lastMessage: data['lastMessage'],
-      lastMessageTimestamp: data['lastMessageTimestamp'],
+      lastMessageTimestamp:
+          (data['lastMessageTimestamp'] as Timestamp).toDate(),
     );
   }
 }

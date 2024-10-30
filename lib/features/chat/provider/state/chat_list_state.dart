@@ -1,4 +1,5 @@
 import 'package:chat_todo/features/chat/data/models/chat_room_model.dart';
+import 'package:chat_todo/features/chat/data/models/chat_room_with_peer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'chat_list_state.freezed.dart';
@@ -7,7 +8,7 @@ part 'chat_list_state.freezed.dart';
 class ChatListState with _$ChatListState {
   const factory ChatListState.initial() = _Initial;
   const factory ChatListState.loading() = _Loading;
-  const factory ChatListState.completed({List<ChatRoomModel>? chatRooms}) =
+  const factory ChatListState.completed({List<ChatRoomWithPeer>? chatRooms}) =
       _Completed;
   const factory ChatListState.failure({String? message}) = _Failure;
 }
