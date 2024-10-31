@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
@@ -30,8 +28,9 @@ class UserModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMap(String userId) {
     return {
+      'id': userId,
       'username': username,
       'profilePictureUrl': profilePictureUrl,
       'onlineStatus': onlineStatus,

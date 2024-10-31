@@ -1,4 +1,3 @@
-import 'package:chat_todo/features/chat/data/models/chat_room_model.dart';
 import 'package:chat_todo/features/chat/data/models/chat_room_with_peer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

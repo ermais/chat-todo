@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:chat_todo/core/providers/firebase_providers.dart';
-import 'package:chat_todo/features/chat/data/chat_remote_source.dart';
 import 'package:chat_todo/features/todo/data/todo_remote_source.dart';
 import 'package:chat_todo/features/todo/domain/models/todo_model.dart';
 import 'package:chat_todo/features/todo/provider/state/todo_state.dart';

@@ -12,7 +12,6 @@ class TodoRemoteSource {
   final Ref _ref;
   TodoRemoteSource(this._firebase, this._ref);
 
-
   Future<Either<String, DocumentReference<Map<String, dynamic>>>> addTodo(
       {required TodoModel todoModel, required List<File> files}) async {
     try {
@@ -50,7 +49,8 @@ class TodoRemoteSource {
 
   Future<Either<String, Stream<QuerySnapshot>>> getTodos() async {
     try {
-      final response = _firebase.collection("todos");
+      final response = _firebase.collection("todos").where('userId',
+          isEqualTo: _ref.read(firebaseAuthProvider).currentUser!.uid);
       final Stream<QuerySnapshot> _snapshots = response.snapshots();
       return Right(_snapshots);
     } on FirebaseException catch (e) {

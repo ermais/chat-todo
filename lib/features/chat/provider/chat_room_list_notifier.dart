@@ -15,6 +15,7 @@ class ChatRoomListNotifier extends StateNotifier<ChatListState> {
   Ref _ref;
 
   Future<void> getUserRooms() async {
+    state = ChatListState.loading();
     final userId = _ref.read(firebaseAuthProvider).currentUser!.uid;
     final res = await _chatRemoteSource.fetchUserChatRooms(userId: userId);
     res.fold((error) {

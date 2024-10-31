@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:chat_todo/core/providers/firebase_providers.dart';
+import 'package:chat_todo/core/utils/get_media_file.dart';
 import 'package:chat_todo/features/chat/data/models/message_model.dart';
+import 'package:chat_todo/features/chat/presentation/widgets/image_message_card.dart';
 import 'package:chat_todo/features/chat/provider/chat_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -45,32 +49,33 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                       ...List.generate(
                           messages?.length ?? 0,
                           (index) => Align(
-                                alignment: (messages![index].senderId != userId)
-                                    ? Alignment.centerLeft
-                                    : Alignment.centerRight,
-                                child: Container(
-                                    margin: EdgeInsets.symmetric(vertical: 8),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 8),
-                                    decoration: BoxDecoration(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .surfaceContainer,
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(24),
-                                            topRight: Radius.circular(24),
-                                            bottomRight: Radius.circular(
-                                                (messages![index].senderId !=
-                                                        userId)
-                                                    ? 24
-                                                    : 0),
-                                            bottomLeft: Radius.circular(
-                                                (messages![index].senderId !=
-                                                        userId)
-                                                    ? 0
-                                                    : 24))),
-                                    child: Text(messages![index].message)),
-                              ))
+                              alignment: (messages![index].senderId != userId)
+                                  ? Alignment.centerLeft
+                                  : Alignment.centerRight,
+                              child: messages[index].type == 'text'
+                                  ? Container(
+                                      margin: EdgeInsets.symmetric(vertical: 8),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 8),
+                                      decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .surfaceContainer,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(24),
+                                              topRight: Radius.circular(24),
+                                              bottomRight: Radius.circular(
+                                                  (messages[index].senderId !=
+                                                          userId)
+                                                      ? 24
+                                                      : 0),
+                                              bottomLeft: Radius.circular(
+                                                  (messages[index].senderId != userId) ? 0 : 24))),
+                                      child: Text(messages[index].message))
+                                  : ImageMessageCard(imageUrl: messages[index].message))),
+                      SizedBox(
+                        height: 64,
+                      )
                     ],
                   ),
                 ),
@@ -100,10 +105,22 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                     child: Row(
                       children: [
                         Center(
-                          child: SizedBox(
-                            width: 48,
-                            height: 48,
-                            child: Icon(Icons.add),
+                          child: GestureDetector(
+                            onTap: () async {
+                              List<File> _files =
+                                  await pickMultipleImages(context);
+                              for (final file in _files) {
+                                await roomMessageNotifier.sendMedia(
+                                    file: file,
+                                    type: 'image',
+                                    roomId: widget.roomId);
+                              }
+                            },
+                            child: SizedBox(
+                              width: 48,
+                              height: 48,
+                              child: Icon(Icons.add),
+                            ),
                           ),
                         ),
                         Flexible(
@@ -123,10 +140,6 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                                   decoration: InputDecoration(
                                       contentPadding:
                                           EdgeInsets.symmetric(horizontal: 16),
-                                      // filled: true,
-                                      // fillColor: Theme.of(context)
-                                      //     .colorScheme
-                                      //     .primaryContainer,
                                       hintText: 'Type here',
                                       border: InputBorder.none,
                                       enabledBorder: InputBorder.none,
@@ -138,7 +151,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                           height: 48,
                           width: 48,
                           child: GestureDetector(
-                            onTap: () {
+                            onTap: () async {
                               final userId = ref
                                   .read(firebaseAuthProvider)
                                   .currentUser!
@@ -152,7 +165,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
                                       DateTime.now().millisecondsSinceEpoch,
                                   type: 'text');
 
-                              roomMessageNotifier.sendMessage(
+                              await roomMessageNotifier.sendMessage(
                                   message: message, roomId: widget.roomId);
                               _textEditingController.clear();
                             },

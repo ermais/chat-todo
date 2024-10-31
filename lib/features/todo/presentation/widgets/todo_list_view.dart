@@ -36,8 +36,7 @@ class TodoListView extends HookConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      (todoState.todos[index].noteImages != null &&
-                              todoState.todos[index].noteImages.isNotEmpty)
+                      (todoState.todos[index].noteImages.isNotEmpty)
                           ? StaggeredGrid.count(
                               axisDirection: AxisDirection.down,
                               crossAxisSpacing: 8,

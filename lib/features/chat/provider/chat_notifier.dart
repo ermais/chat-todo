@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chat_todo/features/chat/data/chat_remote_source.dart';
 import 'package:chat_todo/features/chat/data/models/message_model.dart';
 import 'package:chat_todo/features/chat/provider/chat_remote_source_provider.dart';
@@ -30,6 +32,15 @@ class ChatNotifier extends StateNotifier<RoomMessageState> {
     final res = await _chatRemoteSource.sendMessage(
         messageModel: message, roomId: roomId);
     res.fold((error) {}, (res) {});
+  }
+
+  Future<void> sendMedia(
+      {required File file,
+      required String type,
+      required String roomId}) async {
+    final res = await _chatRemoteSource.sendMedia(
+        file: file, type: type, roomId: roomId);
+    res.fold((error) {}, (message) {});
   }
 }
 

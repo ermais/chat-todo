@@ -3,7 +3,6 @@ import 'package:chat_todo/features/auth/data/auth_remote_source.dart';
 import 'package:chat_todo/features/auth/domain/state/auth_state.dart';
 import 'package:chat_todo/features/auth/provider/auth_providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthNotifier extends StateNotifier<AuthState> {
@@ -11,14 +10,14 @@ class AuthNotifier extends StateNotifier<AuthState> {
   final Ref _ref;
   AuthNotifier(this._authRemoteSource, this._ref)
       : super(const AuthState.initial()) {
-    // _ref.watch(firebaseAuthProvider).authStateChanges().listen((User? user) {
-    //   if (user != null) {
-    //     state = AuthState.authenticated(user: user);
-    //   }
-    //   if (user == null) {
-    //     state = AuthState.unauthenticated();
-    //   }
-    // });
+    _ref.watch(firebaseAuthProvider).authStateChanges().listen((User? user) {
+      if (user != null) {
+        state = AuthState.authenticated(user: user);
+      }
+      if (user == null) {
+        state = AuthState.unauthenticated();
+      }
+    });
   }
 
   Future<void> signIn({required String email, required String password}) async {

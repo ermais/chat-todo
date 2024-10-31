@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_todo/core/providers/firebase_providers.dart';
+import 'package:chat_todo/core/providers/go_router_provider.dart';
 import 'package:chat_todo/features/chat/data/models/chat_room_model.dart';
 import 'package:chat_todo/features/chat/provider/create_chat_room_notifier.dart';
 import 'package:chat_todo/features/chat/provider/state/create_chat_room_state.dart';
@@ -21,9 +22,12 @@ class _CreateChatRoomPageState extends ConsumerState<CreateChatRoomPage> {
     final userState = ref.watch(createChatRoomNotifierProvider);
     final createChatRoomNotifier =
         ref.watch(createChatRoomNotifierProvider.notifier);
-    if (userState.runtimeType == CreateChatRoomState.created) {
-      context.go('/');
-    }
+    userState.maybeWhen(
+        orElse: () => null,
+        created: (_) {
+          ref.read(goRouterProvider).pop();
+        });
+
     return Scaffold(
         appBar: AppBar(),
         body: userState.when(
@@ -92,7 +96,7 @@ class _CreateChatRoomPageState extends ConsumerState<CreateChatRoomPage> {
                                           ),
                                         ),
                                         title: Text(
-                                          users![index].username ?? "",
+                                          users[index].username ?? "",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyLarge,

@@ -13,7 +13,7 @@ class TodoItemBox extends HookConsumerWidget {
       margin: EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
           border: Border.all(
-              color: Theme.of(context).colorScheme.surface!.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.surface.withOpacity(0.5),
               width: 1),
           borderRadius: BorderRadius.all(Radius.circular(4))),
       width: MediaQuery.of(context).size.width,

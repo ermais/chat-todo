@@ -68,7 +68,7 @@ class AuthRemoteSource {
   Future<Either<String, void>> signOut() async {
     try {
       final res = await _firebaseAuth.signOut();
-      if (_googleSignIn != null) _googleSignIn.signOut();
+      await _googleSignIn.signOut();
       return Right(res);
     } on FirebaseAuthException catch (e) {
       return Left(e.message ?? "failed to sign out");

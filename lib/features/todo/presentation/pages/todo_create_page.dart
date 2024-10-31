@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:chat_todo/core/const/constants.dart';
 import 'package:chat_todo/core/providers/firebase_providers.dart';
+import 'package:chat_todo/core/providers/go_router_provider.dart';
 import 'package:chat_todo/core/utils/cal_grid_count.dart';
 import 'package:chat_todo/features/todo/domain/models/todo_model.dart';
 import 'package:chat_todo/features/todo/presentation/widgets/color_bar.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:go_router/go_router.dart';
 
 class TodoCreatePage extends StatefulHookConsumerWidget {
   const TodoCreatePage({super.key});
@@ -59,8 +59,7 @@ class _TodoCreatePageState extends ConsumerState<TodoCreatePage> {
         },
         completed: () {
           loading = false;
-          context.go('/');
-          Navigator.of(context).pop();
+          ref.read(goRouterProvider).pop();
         },
         failure: (String? message) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -264,7 +263,9 @@ class _TodoCreatePageState extends ConsumerState<TodoCreatePage> {
   }
 
   Future<void> _pickMultipleImages() async {
-    var status = await Permission.storage.request();
+    Map<Permission, PermissionStatus> _permissions =
+        await [Permission.storage, Permission.photos].request();
+    var status = await Permission.photos.request();
     if (status.isGranted) {
       final List<XFile>? pickedFiles = await _picker.pickMultipleMedia();
       if (pickedFiles != null && pickedFiles.isNotEmpty) {
